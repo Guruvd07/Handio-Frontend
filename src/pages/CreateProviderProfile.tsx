@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../services/axios";
 
 import {
   SERVICE_CATEGORIES,
@@ -99,7 +100,7 @@ function CreateProviderProfile() {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/providers/profile",
+        "/providers/profile",
         {
           ...form,
           priceAmount: Number(form.priceAmount)
