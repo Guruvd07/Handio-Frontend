@@ -1,8 +1,6 @@
 'use client';
 
-import React from "react"
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { loginUser } from "../services/authService";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
@@ -17,14 +15,22 @@ function Login() {
   const handleLogin = async () => {
     setError("");
     setLoading(true);
+
     try {
       const data = await loginUser(email, password);
 
+      // Store auth data
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
 
+      // 🔥 Trigger navbar update instantly
+      window.dispatchEvent(new Event("authChanged"));
+
+      // Navigate based on role
       if (data.user.role === "provider") {
         navigate("/provider-dashboard");
+      } else if (data.user.role === "admin") {
+        navigate("/admin");
       } else {
         navigate("/");
       }
@@ -97,12 +103,12 @@ function Login() {
         </div>
 
         <div className="auth-benefits">
-          <h3>Why join ServiceHub?</h3>
+          <h3>Why join Handio?</h3>
           <ul>
             <li>✓ Find trusted service providers</li>
             <li>✓ Easy booking and scheduling</li>
-            <li>✓ Secure payments</li>
-            <li>✓ Customer support 24/7</li>
+            <li>✓ Secure platform</li>
+            <li>✓ Fast verification process</li>
           </ul>
         </div>
       </div>
