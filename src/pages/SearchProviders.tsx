@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./SearchProviders.css";
+import api from "../services/axios";
 
 function SearchProviders() {
 
@@ -27,7 +28,7 @@ function SearchProviders() {
   const loadFilters = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/providers/filters/options"
+        "await api.get("/providers/filters/options")"
       );
       setFilters(res.data);
     } catch (err) {
@@ -39,8 +40,7 @@ function SearchProviders() {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        "http://localhost:5000/providers",
+      const res = await axios.get( "/providers",
         {
           params: { category, city, area }
         }
