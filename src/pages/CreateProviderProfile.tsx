@@ -120,7 +120,10 @@ function CreateProviderProfile() {
     }
   };
 
-  const categoryServices = form.category ? (AVAILABLE_SERVICES as any)[form.category] || [] : [];
+  const categoryServices: string[] =   
+    form.category && form.category in AVAILABLE_SERVICES     
+      ? AVAILABLE_SERVICES[form.category as keyof typeof AVAILABLE_SERVICES]     
+      : [];
 
   if (success) {
     return (
@@ -216,7 +219,7 @@ function CreateProviderProfile() {
               <p className="section-hint">Select the services you provide</p>
               
               <div className="services-grid">
-                {categoryServices.map(service => (
+                {categoryServices.map((service: string) => (
                   <label key={service} className="service-checkbox">
                     <input
                       type="checkbox"
