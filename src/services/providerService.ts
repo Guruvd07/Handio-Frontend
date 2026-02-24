@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000";
+const API = "https://handio.onrender.com";
 
 export const fetchProviders = async (filters: {
   category: string;
