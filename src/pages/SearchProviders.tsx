@@ -131,16 +131,6 @@ function SearchProviders() {
             const name = p.userId?.name ?? "Unknown";
             const avatar = name.charAt(0).toUpperCase();
 
-            const formattedPrice =
-              p.priceAmount
-                ? `₹${p.priceAmount.toLocaleString()}${p.priceType ? ` / ${p.priceType}` : ""}`
-                : "Price not set";
-
-            const formattedRating =
-              typeof p.averageRating === "number"
-                ? p.averageRating.toFixed(1)
-                : "N/A";
-
             return (
               <Link
                 to={`/provider/${p._id}`}
