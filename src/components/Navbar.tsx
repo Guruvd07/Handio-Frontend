@@ -19,16 +19,23 @@ function Navbar() {
   };
 
   useEffect(() => {
+    // Initial check
     refreshAuth();
 
-    // update navbar if localStorage changes (login/logout in other pages)
-    window.addEventListener("storage", refreshAuth);
-    return () => window.removeEventListener("storage", refreshAuth);
+    // Listen for custom auth event
+    window.addEventListener("authChanged", refreshAuth);
+
+    return () => {
+      window.removeEventListener("authChanged", refreshAuth);
+    };
   }, []);
 
   const logout = () => {
     localStorage.clear();
-    refreshAuth();
+
+    // Notify app that auth changed
+    window.dispatchEvent(new Event("authChanged"));
+
     navigate("/login");
   };
 
@@ -41,6 +48,7 @@ function Navbar() {
         </Link>
 
         <div className="navbar-links">
+          
           {/* ===== NOT LOGGED IN ===== */}
           {!loggedIn && (
             <>
