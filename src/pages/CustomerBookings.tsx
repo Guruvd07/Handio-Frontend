@@ -13,15 +13,12 @@ export default function CustomerBookings() {
     load();
   }, []);
 
-  async function load() {
-    const res = await axios.get(
-      "http://localhost:5000/bookings/my",
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      }
-    );
+  const res = await axiosInstance.get("/api/bookings/my", {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+}
+  );
 
     setList(res.data);
   }
