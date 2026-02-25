@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://handio.onrender.com";
+const API = "https://handio.onrender.com/api";
 
 /* =========================
    CREATE BOOKING
@@ -32,15 +32,15 @@ export const createBooking = async (
 export const getProviderBookings = async (token: string) => {
   const res = await axios.get(`${API}/bookings/provider`, {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   return res.data;
 };
 
 /* =========================
-   UPDATE STATUS — FIXED URL
+   UPDATE STATUS
 ========================= */
 
 export const updateBookingStatus = async (
@@ -49,12 +49,12 @@ export const updateBookingStatus = async (
   token: string
 ) => {
   const res = await axios.patch(
-    `${API}/bookings/${id}/status`,   // ✅ fixed
+    `${API}/bookings/${id}/status`,
     { status },
     {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
 
