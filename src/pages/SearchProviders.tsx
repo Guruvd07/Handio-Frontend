@@ -26,16 +26,13 @@ function SearchProviders() {
   }, []);
 
   const loadFilters = async () => {
-    try {
-      const res = await axios.get(
-        "await api.get("/providers/filters/options")"
-      );
-      setFilters(res.data);
-    } catch (err) {
-      console.error("Failed to load filters", err);
-    }
-  };
-
+  try {
+    const res = await axiosInstance.get("/api/providers/filters/options");
+    setFilters(res.data);
+  } catch (err) {
+    console.error("Failed to load filters", err);
+  }
+};
   const search = async () => {
     try {
       setLoading(true);
