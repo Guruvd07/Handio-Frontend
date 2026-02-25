@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://handio.onrender.com";
+const API = "https://handio.onrender.com/api";
 
 export const loginUser = async (email: string, password: string) => {
   const res = await axios.post(`${API}/auth/login`, {
