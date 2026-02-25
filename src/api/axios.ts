@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://handio.onrender.com"
+  baseURL: "https://handio.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
