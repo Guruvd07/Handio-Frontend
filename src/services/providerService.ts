@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://handio.onrender.com";
+const API = "https://handio.onrender.com/api";
 
 export const fetchProviders = async (filters: {
   category: string;
@@ -15,7 +15,6 @@ export const fetchProviders = async (filters: {
 };
 
 export const fetchProviderById = async (id: string) => {
-    const res = await axios.get(`${API}/providers/${id}`);
-    return res.data;
+  const res = await axios.get(`${API}/providers/${id}`);
+  return res.data;
 };
-  
